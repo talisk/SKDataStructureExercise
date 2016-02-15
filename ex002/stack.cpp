@@ -31,5 +31,4 @@ void stack::pop() {
 stack::stack() {
     this->top = NULL;
     this->size = 0;
-    this->minNode->next = NULL;
 }

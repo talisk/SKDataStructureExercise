@@ -22,8 +22,6 @@ public:
     void push(int value);
     int min();
 
-private:
-    pLNode minNode;
 };
 
 
