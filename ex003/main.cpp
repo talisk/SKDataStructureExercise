@@ -18,36 +18,26 @@ void initNumbers(vector<int> &array) {
 }
 
 void calculate(vector<int> &array) {
-    int sum = 0, maxSum = 0;
-    for (int i = 0; i < array.size(); ++i) {
+    int sum = array[0], maxSum = sum, beginIndex = 0, endIndex = 0, begin = 0, end = 0;
+    for (int i = 1; i < array.size(); ++i) {
+        if (sum > 0) {
+            sum += array[i];
+            end = i;
+        } else {
+            sum = array[i];
+            begin= i;
+        }
+        if (sum > maxSum) {
+            maxSum = sum;
+            beginIndex = begin;
+            endIndex = end;
+        }
 
-        if (sum == 0 && array[i] < 0) continue;
-
-        if (i != 0 && i != array.size() - 1)
-            if ((array[i] > 0 && array[i] + array[i-1] > 0) ||
-                (array[i] > 0 && array[i] + array[i+1] > 0) ||
-                (array[i] < 0 && array[i+1] + array[i] > 0) ||
-                (array[i] < 0 && array[i-1] + array[i] > 0)) {
-                sum += array[i];
-                if (sum > maxSum) maxSum = sum;
-            } else
-                sum = 0;
-
-        else if (i == 0)
-            if (array[1] + array[0]>0) {
-                sum += array[i];
-                if (sum > maxSum) maxSum = sum;
-            }
-            else sum = 0;
-
-        else
-            if (array[i-1] + array[i]>0) {
-                sum += array[i];
-                if (sum > maxSum) maxSum = sum;
-            }
-            else continue;
     }
-    cout<<"The max sum = "<<maxSum<<endl;
+    cout<<"MaxSum = "<<maxSum<<endl;
+    for (int i = beginIndex; i <= endIndex; ++i) {
+        cout<<array[i]<<", ";
+    }
 }
 
 int main() {
